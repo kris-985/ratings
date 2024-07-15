@@ -31,55 +31,56 @@
 
 <script>
     $(document).ready(function() {
-        const data = JSON.parse(document.querySelector("main").getAttribute("data-ratings"));
+        const data = JSON.parse($("main").attr("data-ratings"));
 
-        const peaple = {};
+        const people = {};
 
         data.forEach(item => {
-            if (!(Object.keys(peaple).some((x) => x == item.rating))) {
-                peaple[item.rating] = 1;
+            if (!(item.rating in people)) {
+                people[item.rating] = 1;
             } else {
-                peaple[item.rating]++;
+                people[item.rating]++;
             }
         });
 
-        renderChart(peaple);
+        renderChart(people);
     });
 
-    function renderChart(peaple) {
-        Object.entries(peaple).forEach(([key, value]) => {
+    function renderChart(people) {
+        $.each(people, function(key, value) {
             const item = `
-    <li class="list-item">
-        <span class="bold">Оценка ${key}: </span>
-        <span>${value} човека</span>
-    </li>
-    `;
-
-            document.querySelector("#chart").innerHTML += item;
+                <li class="list-item">
+                    <span class="bold">Оценка ${key}: </span>
+                    <span>${value} човека</span>
+                </li>
+            `;
+            $("#chart").append(item);
         });
     }
 </script>
 
 <script>
-    document.querySelector("main").addEventListener("click", handleClick);
+    $("main").on("click", handleClick);
 
     function handleClick(event) {
-        const deleteId = event.target.getAttribute("data-delete-id");
+        const deleteId = $(event.target).attr("data-delete-id");
 
         if (deleteId) {
             deleteItem(deleteId);
         }
     }
 
-    async function deleteItem(id) {
-        try {
-            await fetch(`/ratings/delete/${id}`, {
-                method: "DELETE"
-            });
-            window.location.reload();
-        } catch (error) {
-            console.log(error);
-        }
+    function deleteItem(id) {
+        $.ajax({
+            url: `/ratings/delete/${id}`,
+            method: "DELETE",
+            success: function() {
+                window.location.reload();
+            },
+            error: function(error) {
+                console.log(error);
+            }
+        });
     }
 </script>
 
