@@ -1,0 +1,120 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    font-size: 18px;
+}
+
+h1, h2 {
+    text-align: center;
+}
+
+.container {
+    max-width: 1280px;
+    margin: 0 auto;
+}
+
+.form-container {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+}
+
+form {
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 5px;
+    width: 30%;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+input[type="text"], input[type="number"] {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: inherit;
+}
+
+.button:hover {
+    background-color: #45a049;
+}
+
+#chart {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+}
+
+.bar {
+    width: 0;
+    height: 30px;
+    margin: 10px 0;
+    text-align: right;
+    padding-right: 10px;
+    color: white;
+    white-space: nowrap;
+    transition: width 2s;
+}
+
+.bar-5 { background-color: #3498db; }
+.bar-3 { background-color: #e74c3c; }
+
+.home ul {
+    list-style: none;
+    padding: 0;
+}
+
+.home ul li {
+    display: block;
+    margin-top: 20px;
+    background-color: #efefef;
+    padding: 20px;
+    border-radius: 5px;
+    width: 100%;
+}
+
+.home ul li .buttons {
+    margin-top: 20px;
+}
+
+a {
+    text-decoration: none;
+    color: #45a049;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.flex {
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(2, auto);
+}
+
+@media only screen and (max-width: 900px) {
+    .flex {
+        grid-template-columns: repeat(1, auto);
+    }
+}
